@@ -1,9 +1,9 @@
 {
-  "name": "better-supabase-types",
+  "name": "@rasri/better-supabase-types",
   "description": "A CLI tool to add exports for your supabase tables",
-  "repository": "FroggyPanda/better-supabase-types",
-  "bugs": "https://github.com/FroggyPanda/better-supabase-types/issues",
-  "author": "FroggyPanda",
+  "repository": "rasreee/better-supabase-types",
+  "bugs": "https://github.com/rasreee/better-supabase-types/issues",
+  "author": "rasreee",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

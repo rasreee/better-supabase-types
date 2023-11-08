@@ -67,12 +67,12 @@ export async function generate(
 
       if (enumAsType) {
         types.push(
-          `export type ${enumNameType} = Database['${schemaName}']['Enums']['${enumName}'];`,
+          `export type ${enumNameType}Type = Database['${schemaName}']['Enums']['${enumName}'];`,
           '\n'
         );
       } else {
         types.push(
-          `export enum ${enumNameType} {`,
+          `export enum ${enumNameType}s {`,
           ...(getEnumValuesText(enumProperty, enumPascalCase) ?? []),
           '}',
           '\n'
