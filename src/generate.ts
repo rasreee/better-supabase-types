@@ -10,6 +10,7 @@ import {
 } from './utils';
 import { ModuleKind, Project, ScriptTarget } from 'ts-morph';
 import chalk from 'chalk';
+import pluralize from 'pluralize';
 
 export async function generate(
   input: string,
@@ -42,8 +43,6 @@ export async function generate(
 
   const schemas = getSchemasProperties(project, sourceFile);
   for (const schema of schemas) {
-    types.push(`// Schema: ${schema.getName()}`);
-
     const schemaName = schema.getName();
     const tablesProperties = getTablesProperties(
       project,
@@ -58,7 +57,7 @@ export async function generate(
     );
 
     if (enumsProperties.length > 0) {
-      types.push('// Enums');
+      types.push('/*\n* Enums\n*/');
     }
     for (const enumProperty of enumsProperties) {
       const enumName = enumProperty.getName();
@@ -72,7 +71,7 @@ export async function generate(
         );
       } else {
         types.push(
-          `export enum ${enumNameType}s {`,
+          `export enum ${pluralize(enumNameType)} {`,
           ...(getEnumValuesText(enumProperty, enumPascalCase) ?? []),
           '}',
           '\n'
@@ -81,7 +80,7 @@ export async function generate(
     }
 
     if (tablesProperties.length > 0) {
-      types.push('// Tables');
+      types.push('/*\n* Tables\n*/');
     }
     for (const table of tablesProperties) {
       const tableName = table.getName();
@@ -96,7 +95,7 @@ export async function generate(
     }
 
     if (functionProperties.length > 0) {
-      types.push('// Functions');
+      types.push('/*\n* Functions\n*/');
     }
     for (const functionProperty of functionProperties) {
       const functionName = functionProperty.getName();
